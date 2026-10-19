@@ -1,0 +1,17 @@
+{
+  "name": "example-node-webhooks",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file=.env receiver.js",
+    "check:webhooks": "node --env-file=.env test-webhook.js"
+  },
+  "dependencies": {
+    "express": "5.3.0",
+    "standardwebhooks": "1.1.1"
+  }
+}

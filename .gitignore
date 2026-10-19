@@ -1,0 +1,5 @@
+.env
+.env.*
+!.env.example
+node_modules/
+webhook-test-results.json
