@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "exact challenge",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "passed": true
+    },
+    {
+      "name": "signed fixture",
+      "expectedStatus": 204,
+      "actualStatus": 204,
+      "passed": true
+    },
+    {
+      "name": "duplicate fixture",
+      "expectedStatus": 204,
+      "actualStatus": 204,
+      "passed": true
+    },
+    {
+      "name": "unknown event",
+      "expectedStatus": 204,
+      "actualStatus": 204,
+      "passed": true
+    },
+    {
+      "name": "modified body",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "passed": true
+    },
+    {
+      "name": "missing signature",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "passed": true
+    },
+    {
+      "name": "stale timestamp",
+      "expectedStatus": 400,
+      "actualStatus": 400,
+      "passed": true
+    },
+    {
+      "name": "wrong route",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "passed": true
+    }
+  ],
+  "revision": "5a3a4ab643950d7ec10f2166c099fcee7c4d6c63",
+  "issuer": "local signed fixture; not staging delivery"
+}
