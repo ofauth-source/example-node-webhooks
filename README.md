@@ -62,3 +62,11 @@ To receive OFAuth deliveries through your own HTTPS endpoint or tunnel, replace 
 The receiver only logs events. It acknowledges duplicates without durable deduplication. Before adding side effects, durably save events, deduplicate by `eventId`, and acknowledge only after saving succeeds. Use per-account `order` to avoid applying older state. Map authorization and linked-account ownership to your application's user, keep environments separate, and keep synthetic fixtures out of customer records. A real designated account in Test can also have `test: true`.
 
 Keep the raw-body handler before any JSON middleware. Verify signatures before reading event data or answering challenges. Do not log signing secrets or full event bodies. See the [receiver implementation reference](https://docs.ofauth.com/v3/guides/webhook-handler).
+
+## OAuth ownership and recovery
+
+Use the [Express OAuth example](https://github.com/ofauth-source/example-express-oauth) for client registration, a session-bound callback with S256 PKCE, ordinary token persistence, paginated account discovery, explicit account selection, provider reconnect, and RFC 7009 revocation. Sandbox, Test, and Live use the same standard confidential OAuth flow.
+
+Your auth framework or application owns the tokens. Access tokens are opaque and initially last 15 minutes; use the returned `expires_in`. Refresh tokens remain stable and expire after 90 days without authenticated refresh. Separate instances can refresh concurrently, and a lost refresh response can be retried with the same token. No mandatory database refresh lock or attempt journal is needed. Protect registration changes with conditional writes.
+
+A provider session error requires reconnect for that exact linked account. OAuth refresh cannot repair it. Revoking a refresh token ends that credential and its access tokens; ending the authorization ends every credential. Never automatically repeat an interrupted provider write. Developer requests use the application's Developer entitlement; the account owner's Operator plan is independent.

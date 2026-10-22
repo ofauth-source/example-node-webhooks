@@ -7,7 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "start": "node --env-file=.env receiver.js",
+    "start": "node init && node --env-file=.env receiver.js",
     "check:webhooks": "node --env-file=.env test-webhook.js"
   },
   "dependencies": {
